@@ -25,18 +25,11 @@ public class ReverseLengthProtocol implements Protocol {
     }
 
     private String getResponseData(ReverseLengthProtocolRequestType requestType, String data) {
-        String response = null;
-        switch (requestType) {
-            case REVERSE:
-                response = getReversedString(data);
-                break;
-            case LENGTH:
-                response = getStringLength(data);
-                break;
-            default:
-                break;
-        }
-        return response;
+        return switch (requestType) {
+            case REVERSE -> getReversedString(data);
+            case LENGTH -> getStringLength(data);
+            default -> null;
+        };
     }
 
     private static String getStringLength(String str) {
